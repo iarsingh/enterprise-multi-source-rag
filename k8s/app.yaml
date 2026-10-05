@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enterprise-multi-source-rag
+  labels:
+    app: enterprise-multi-source-rag
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enterprise-multi-source-rag
+  template:
+    metadata:
+      labels:
+        app: enterprise-multi-source-rag
+    spec:
+      containers:
+        - name: api
+          image: enterprise-multi-source-rag:local
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /v1/readyz
+              port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: enterprise-multi-source-rag
+spec:
+  selector:
+    app: enterprise-multi-source-rag
+  ports:
+    - port: 80
+      targetPort: 8080
