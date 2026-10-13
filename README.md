@@ -1,5 +1,12 @@
 # Multi-Source Enterprise RAG
 
+## Overview
+
+A retrieval lab that searches runbook, wiki, GitHub and other document-shaped notes (PDF, DOCX and database exports) with BM25, reranks matches by score and answers with a citation through `POST /ask`. Requests can carry a tenant filter shaped like role-based access control and a session id for memory across turns. A versioned `/v1` ops API adds workspaces, tenant isolation, job approval and audit, with Docker packaging and a pytest suite run in GitHub Actions.
+
+- **Built with:** Python, BM25, pytest, Docker, GitHub Actions
+- **Scope:** Laptop lab with no hosted model; cluster apply stays false until a human approves.
+
 <!-- project-guide:start -->
 ## Project guide
 
